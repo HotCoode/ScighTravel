@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/background_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/swipe_tab_1"
+        android:orientation="vertical">
+
+        <com.scigh.views.CircleView
+            android:layout_width="@dimen/intro_circle_radius"
+            android:layout_height="@dimen/intro_circle_radius"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin_double"
+            app:circleFillColor="@color/swipe_tab_1_dark" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/content_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <!-- content goes here -->
+    </LinearLayout>
+
+</RelativeLayout>

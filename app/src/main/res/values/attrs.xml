@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="CircleView">
+
+        <attr name="fillRadius" format="float" />
+        <attr name="circleFillColor" format="color" />
+        <attr name="backgroundColorValue" format="color" />
+    </declare-styleable>
+</resources>

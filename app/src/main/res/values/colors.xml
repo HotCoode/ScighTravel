@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_primary">#363F44</color>
+    <color name="theme_primary_dark">#ff1a1f23</color>
+    <color name="theme_accent">#E91C62</color>
+    <color name="theme_window_background">#363F44</color>
+
+
+    <!--General Colors-->
+    <color name="white">#FFFFFF</color>
+
+    <!--<color name="swipe_tab_1">#ff6b4e</color>-->
+    <!--<color name="swipe_tab_1_dark">#ef6342</color>-->
+    <!--<color name="swipe_tab_2">#6685ec</color>-->
+    <!--<color name="swipe_tab_2_dark">#5273d6</color>-->
+    <!--<color name="swipe_tab_3">#8a56d2</color>-->
+    <!--<color name="swipe_tab_3_dark">#7b4ac6</color>-->
+    <!--<color name="swipe_tab_4">#64a62f</color>-->
+    <!--<color name="swipe_tab_4_dark">#4e8c21</color>-->
+
+    <color name="swipe_tab_1">#4285f4</color>
+    <color name="swipe_tab_1_dark">#3378e9</color>
+    <color name="swipe_tab_2">#0f9d58</color>
+    <color name="swipe_tab_2_dark">#078d4c</color>
+    <color name="swipe_tab_3">#00bcd4</color>
+    <color name="swipe_tab_3_dark">#00afc5</color>
+    <color name="swipe_tab_4">#f09300</color>
+    <color name="swipe_tab_4_dark">#e88621</color>
+
+
+</resources>
