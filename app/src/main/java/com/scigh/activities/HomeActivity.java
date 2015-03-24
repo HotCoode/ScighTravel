@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -45,11 +46,11 @@ public class HomeActivity extends ActionBarActivity implements RecyclerViewClick
 
         setContentView(R.layout.activity_home);
         initViews();
+
         if (savedInstanceState == null) {
             mPlacesPresenter = new PlacesPresenter(this);
 
         } else {
-
             PlacesWrapper placesWrapper = (PlacesWrapper) savedInstanceState
                     .getSerializable("places_wrapper");
 
@@ -63,11 +64,9 @@ public class HomeActivity extends ActionBarActivity implements RecyclerViewClick
         super.onSaveInstanceState(outState);
 
         if (mPlacesAdapter != null) {
-
             outState.putSerializable("places_wrapper",
                     new PlacesWrapper(mPlacesAdapter.getPlaceList()));
         }
-
     }
 
     @Override
@@ -77,8 +76,8 @@ public class HomeActivity extends ActionBarActivity implements RecyclerViewClick
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         mPlacesPresenter.start();
     }
 
@@ -164,6 +163,18 @@ public class HomeActivity extends ActionBarActivity implements RecyclerViewClick
     }
 
     @Override
+    public void showCompleteLabel() {
+        Snackbar overflowSnackBar = Snackbar.with(this)
+                .text("That's all for now. Come back later")
+                .actionLabel("Ok")
+                .duration(Snackbar.SnackbarDuration.LENGTH_SHORT)
+                .color(getResources().getColor(R.color.theme_primary))
+                .actionColor(getResources().getColor(R.color.theme_accent));
+
+        SnackbarManager.show(overflowSnackBar);
+    }
+
+    @Override
     public void hideActionLabel() {
 
         SnackbarManager.dismiss();
@@ -173,13 +184,11 @@ public class HomeActivity extends ActionBarActivity implements RecyclerViewClick
     public boolean isTheListEmpty() {
 
         return (mPlacesAdapter == null) || mPlacesAdapter.getPlaceList().isEmpty();
-
     }
 
     @Override
     public void appendPlaces(List<Place> placesList) {
         mPlacesAdapter.appendPlaces(placesList);
-
     }
 
     private RecyclerView.OnScrollListener recyclerScrollListener = new RecyclerView.OnScrollListener() {
@@ -189,6 +198,14 @@ public class HomeActivity extends ActionBarActivity implements RecyclerViewClick
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 
             super.onScrolled(recyclerView, dx, dy);
+
+            visibleItemCount = mRecycler.getLayoutManager().getChildCount();
+            totalItemCount = mRecycler.getLayoutManager().getItemCount();
+            pastVisiblesItems = ((GridLayoutManager) mRecycler.getLayoutManager()).findFirstVisibleItemPosition();
+
+            if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && !mPlacesPresenter.isLoading()) {
+                //mPlacesPresenter.onEndListReached();
+            }
 
             // Is scrolling up
             if (dy > 10) {
@@ -208,7 +225,6 @@ public class HomeActivity extends ActionBarActivity implements RecyclerViewClick
                     flag = false;
                 }
             }
-
         }
     };
 
